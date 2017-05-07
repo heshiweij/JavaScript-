@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 对象的创建方式
+
+        /******************* 示例 *********************/
+
+        // 1、使用 new object() 方式创建对象
+        (function () {
+
+            // 创建一个人的对象
+            var obj = new Object();
+            obj.name = 'hsw';
+            obj.age = 1;
+            obj.addr = 'sx';
+            obj.say = function () {
+                console.log(this.name + ',' + this.age + ',' + this.addr);
+            };
+
+            // 使用对象
+            obj.say();
+
+            // 优点：
+            // 缺点：1、代码复杂 2、没有类的约束，字段无法重用
+
+        })();
+
+        // 2、使用 json 创建对象
+        (function () {
+
+            // 创建简单的对象
+            var person = {
+                name: 'hsw',
+                age: 1,
+                say: function () {
+                    console.log(this.name + ',' + this.age);
+                }
+            };
+
+            // 使用简单的对象
+            person.say();
+
+            // 创建相对复杂的对象
+            var person = [
+                {name: 'hsw1', age: 1},
+                {name: 'hsw2', age: 2}
+            ];
+
+            console.log(person);
+
+        })();
+
+        // 3、使用工厂函数创建对象
+        (function () {
+
+            // 定义工厂函数
+            function createPerson(name, age, addr) {
+                var obj = new Object();
+                obj.name = name;
+                obj.age = age;
+                obj.addr = addr;
+                obj.say = function () {
+                    console.log(this.name + ',' + this.age + ',' + this.addr);
+                };
+                return obj;
+            }
+
+            // 使用对象
+            var person = createPerson('hsw', 1, 'sx');
+            person.say();
+
+            // 优点：简化了 new Object 的操作
+            // 缺点：没有办法检测对象的类型
+
+            var p1 = createPerson('hsw1', 1);
+            var p2 = createPerson('wnm1', 2);
+            console.log(p1 instanceof Object);
+            console.log(p2 instanceof Object);
+
+        })();
+
+
+        // 3、使用构造函数创建对象
+        (function () {
+
+           function Person(name, age) {
+               this.name = name;
+               this.age = age;
+               this.say = function () {
+                    console.log(this.name + ',' + this.age);
+               };
+           }
+
+            // 使用对象
+            var person =  new Person();
+            person.say();
+
+            // 优点：1、对象可以检测类型 2、有类的约束，可以复用字段
+            // 缺点：不同的对象，方法会被拷贝多份，创建的对象一多造成内存空间的浪费
+
+            var p1 = new Person('hsw', 1);
+            var p2 = new Person('hsw', 2);
+
+            // 检测类型
+            console.log('instanceof: ', p1 instanceof Person); // true
+            console.log('instanceof: ', p2 instanceof Person); // true
+
+            // 方法拷贝
+            console.log(p1.say === p2.say); // false
+
+            var ps = [];
+            for (var i = 0; i < 10000; i++){
+                // 会创建 10000 个 say 方法所需的内存空间,造成资源浪费
+                ps.push( new Person('hsw', i) );
+            }
+
+            console.log(ps);
+
+        })();
+
+
+        // 4、试图解决方法不能重用的问我
+        (function () {
+
+            function say() {
+                console.log(this.name + ',' + this.age);
+            };
+
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+                this.say = say;
+            }
+
+            var p1 = new Person('hsw', 1);
+            var p2 = new Person('hsw', 2);
+
+            console.log(p1.say === p2.say); // true
+
+            // 优点：解决了方法拷贝问题
+            // 缺点：打破了面向对象的封装性
+
+        })();
+
+
+
+        /******************* 结论 *********************/
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

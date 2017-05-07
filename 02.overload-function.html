@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 证明函数不存在重载的概念
+
+
+        /******************* 示例 *********************/
+
+        // 1、一般方式定义函数
+        function sum(num1, num2) {
+            console.log(num1 + 1000);
+        }
+        
+        function sum(num) {
+            console.log(num + 100);
+        }
+
+        sum(19); // 119
+
+        sum(19, 20); // 119
+
+
+        // 1、变量方式定义函数
+        // 上述代码，相当于下面的代码, 变量被覆盖了
+        var fun = function (num1, num2) {
+            console.log(num1 + num2);
+        };
+
+        var fun = function (num) {
+            console.log(num + 100);
+        };
+
+        fun(19); // 19
+
+
+
+        /******************* 结论 *********************/
+
+        // 1、函数不存在重载，多次定义只会被覆盖
+        // 2、函数调用和参数没有关系，传入几个参数，就使用几个参数
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

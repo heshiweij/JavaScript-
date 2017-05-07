@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 函数的 apply 和 call 方法
+
+        /******************* 示例 *********************/
+
+        // 1、apply 和 call 的第一个参数：上下文
+        (function () {
+            
+            function sum(num1, num2) {
+                console.log(this);
+                return num1 + num2;
+            }
+
+            console.log(this); // window
+            console.log(sum.apply(this, [1, 2])); // window  3
+            
+            function Person() {
+
+            }
+
+            var p = new Person();
+            console.log(sum.apply(p, [1, 2])); // Person 3
+
+        })();
+
+
+        // 2、apply 和 call 的差异：传参方式
+        (function () {
+
+            function sum(num1, num2) {
+                console.log(this);
+                return num1 + num2;
+            }
+
+            console.log(this); // window
+            console.log(sum.apply(this, [1, 2])); // window  3
+
+            console.log(sum.call(this, 1, 2)); // window  3
+
+        })();
+
+
+        /******************* 结论 *********************/
+
+        // 1. apply 和 call 基本相似，唯一的区别是，apply 通过第二个参数的数组传参，call 是通过参数列表传参a
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

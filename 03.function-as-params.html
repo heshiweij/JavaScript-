@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 利用“函数是对象”的特性，将函数对象当做参数传递到方法中
+
+        /******************* 示例 *********************/
+
+        // 1、函数可以当做参数传递
+        (function () {
+
+            function callFunc(fn, parm) {
+                fn(parm);
+            }
+
+            function sum(num) {
+                console.log( num + 10 );
+            }
+
+            callFunc(sum, 20); // 30
+
+        })();
+
+        // 2、函数可以当做值返回
+
+
+        (function () {
+
+            function retFun(arg) {
+                var fun = function (num) {
+                    return arg + num;
+                };
+                return fun;
+            }
+
+            // 返回的是函数，该函数中保存了 arg 的值(10)
+            var fun1 = retFun(10);
+            console.log( fun1(20) ); // 30
+            // 该方式，使得 arg 参数的作用域扩大了（原本只在 fun 函数中有效，现在在作用域外部也可已使用）
+
+        })();
+
+        /******************* 结论 *********************/
+
+        // 1、函数是对象给程序代码了很大的灵活
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

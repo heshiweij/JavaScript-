@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 1、几种定义函数的方式
+        // 2、证明函数是一个对象
+
+        /******************* 示例 *********************/
+
+        // 1、第 1 种函数定义方式
+        (function () {
+            // 1、定义一个名叫 fun1 函数
+            function fun1() {
+                console.log('I am fun1');
+            }
+            fun1();
+
+            // 2、定义 fun2，指向一个函数对象
+            var fun2 = function () {
+                console.log('I am fun2');
+            };
+            fun2();
+
+        })();
+
+        // 2、第 2 种函数定义方式
+        (function () {
+
+            // 3、定义 func3，指向 Function 对象
+            var fun3 = new Function('arg1, arg2', "console.log( 'func3: ' + (arg1 + arg2) )");
+            fun3(1,2); // fun3: 3
+
+            // 3、不同的函数，地址不相等
+            console.log(fun1 === fun2); // false
+
+        })();
+
+        /******************* 结论 *********************/
+
+        // 1、函数是一个对象（可以当做参数传递、可以返回一个函数）
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

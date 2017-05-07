@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 函数自带的 arguments 的应用
+
+        /******************* 示例 *********************/
+
+        // 1、传统递归实现乘方
+        (function () {
+            function factorial(num) {
+                if (num <= 1){
+                    return 1;
+                } else {
+                    return factorial(num - 1) * num;
+                }
+            }
+
+            var val = factorial(5);
+            console.log(val); // 120
+        })();
+
+        // 传统递归实现乘方，存在的问题
+        (function () {
+            function factorial(num) {
+                if (num <= 1){
+                    return 1;
+                } else {
+                    return factorial(num - 1) * num;
+                }
+            }
+
+            var fc = factorial;
+            // 设置 factorial 为 null
+            factorial = null;
+            // 由于在 fc 内部，也使用了 factorial
+            // 因此会报错: Uncaught TypeError: factorial is not a function
+//            console.log( fc(5) );
+        })();
+
+        // 3、使用 arguments.callee 解决上述问题
+        (function () {
+
+            function factorial(num) {
+                if (num <= 1){
+                    return 1;
+                } else {
+                    return arguments.callee(num - 1) * num;
+                }
+            }
+
+            var fc = factorial;
+            // 设置 factorial 为 null
+            factorial = null;
+            console.log( fc(5) ); // 120
+
+        })();
+
+
+        /******************* 结论 *********************/
+
+        // 1、arguments.callee 实现了解耦
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 函数的 this
+
+        /******************* 示例 *********************/
+
+        // 1、函数 this 指定对象属性
+        (function () {
+
+            // 通过函数创建类时，需要通过 this 指定为当前的对象的属性赋值
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            var p1 = new Person('hs1', 1);
+
+        })();
+
+        var color = 'red';
+
+        // 2、函数 this 的含义随着调用对象的不同而不同
+        (function () {
+
+            function showColor() {
+                console.log(this.color);
+            }
+
+            // 直接调用，调用函数就是 window 对象）,所有 this ===  window
+            showColor();
+
+            // 通过 c 对象调用，那么 this === c
+            function Circle(color) {
+                this.color = color;
+                // 这句话相当于
+//                this.showColor = function () {
+//                    console.log(this.color); // this 就是当前 circle 所在的对象
+//                };
+                this.showColor = showColor;
+            }
+
+            var c = new Circle('yellow');
+            c.showColor();
+
+        })();
+
+        /******************* 结论 *********************/
+
+        // 1. 函数 this 指定对象属性
+        // 2. 函数 this 的含义随着调用对象的不同而不同
+        // 3. 补充：不管在全局还是闭包，this 就是 window
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

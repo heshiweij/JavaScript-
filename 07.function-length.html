@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        /******************* 概述 *********************/
+
+        // 函数的 length 属性
+
+        /******************* 示例 *********************/
+
+        // 1、length 属性的含义
+        (function () {
+            // 定义 0 个参数的函数
+            function sum() {
+                console.log(arguments);
+            }
+
+            // 定义 1 个参数的函数
+            function sum1(num1) {
+                console.log(arguments);
+            }
+
+            // 定义 2 个参数的函数
+            function sum2(num1, num2) {
+                console.log(arguments);
+            }
+
+            // 定义 3 个参数的函数
+            function sum3(num1, num2, num3) {
+                console.log(arguments);
+            }
+
+            // length 代表参数的个数, 更进一步提现了函数的对象性
+            console.log( sum.length ); // 0
+            console.log( sum1.length ); // 1
+            console.log( sum2.length ); // 2
+            console.log( sum3.length ); // 3
+
+        })();
+
+        /******************* 结论 *********************/
+
+        // 1、函数的 length 属性，表示函数参数的个数
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
